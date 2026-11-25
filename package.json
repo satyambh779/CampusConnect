@@ -1,0 +1,27 @@
+{
+  "name": "campusconnect-root",
+  "version": "2.5.0",
+  "description": "CampusConnect - AI-Powered Auto Apply & Smart Interview Management Platform",
+  "private": true,
+  "scripts": {
+    "install:server": "cd server && npm install",
+    "install:client": "cd client && npm install",
+    "install:all": "npm run install:server && npm run install:client",
+    "build:client": "cd client && npm run build",
+    "build": "npm run install:all && npm run build:client",
+    "start": "cd server && node server.js",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev"
+  },
+  "keywords": [
+    "campus-recruitment",
+    "job-matching",
+    "auto-apply",
+    "interview-management",
+    "react",
+    "node",
+    "mongodb"
+  ],
+  "author": "Satyam Bhardwaj",
+  "license": "ISC"
+}

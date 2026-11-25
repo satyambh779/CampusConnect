@@ -30,10 +30,22 @@ app.use("/api/auto-apply", autoApplyRoutes);
 app.use("/api/interviews", interviewRoutes);
 app.use("/api/notifications", notificationRoutes);
 
-// Test Route
-app.get("/", (req, res) => {
-  res.send("🚀 CampusConnect AI-Powered API Running...");
-});
+const path = require("path");
+const fs = require("fs");
+
+// Serve frontend static build if present (Unified Full-Stack Deployment)
+const clientDist = path.join(__dirname, "../client/dist");
+if (fs.existsSync(clientDist)) {
+  app.use(express.static(clientDist));
+  app.get(/^(?!\/api).*/, (req, res) => {
+    res.sendFile(path.join(clientDist, "index.html"));
+  });
+} else {
+  // Test Route when running API-only
+  app.get("/", (req, res) => {
+    res.send("🚀 CampusConnect AI-Powered API Running...");
+  });
+}
 
 // Start Server
 const PORT = process.env.PORT || 5001;

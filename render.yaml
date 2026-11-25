@@ -1,0 +1,18 @@
+services:
+  # 1. Full-Stack Web Service (Backend API + Frontend Serving)
+  - type: web
+    name: campusconnect-platform
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
