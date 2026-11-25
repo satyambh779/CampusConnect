@@ -1,0 +1,44 @@
+. Where DBMS is used in CampusConnect
+Project feature	DBMS concept
+Student registration	Insert, validation, unique constraints
+Recruiter registration	User records and role management
+Login	Query, authentication, password hashing
+Company creation	Create and update records
+Job posting	CRUD operations
+Job search	Queries, filtering, sorting
+Job applications	Relationships and references
+Application tracking	Update and retrieve records
+Recruiter dashboard	Aggregation and counting
+Prevent duplicate applications	Unique indexes
+Applicant management	Queries and data population
+
+
+
+
+. DBMS concepts you can demonstrate in your project
+These are particularly useful for your viva:
+DBMS topic	How you demonstrate it
+CRUD	Create jobs, read jobs, update jobs, delete jobs
+Primary key	MongoDB _id
+Foreign key concept	References such as job, applicant, company, userId
+One-to-many relationship	One recruiter can create multiple jobs
+Many-to-many relationship	Students can apply to multiple jobs, and jobs can receive applications from multiple students
+Indexing	Index email and job/application references
+Aggregation	Count jobs, companies, and applicants
+Data integrity	Prevent duplicate applications
+Security	Role-based access and protected records
+
+
+
+
+
+High DBMS involvement
+My qualitative assessment, not a measured percentage.
+
+Your project demonstrates:
+- Database design and collection relationships
+- CRUD operations
+- Query optimization and indexing
+- Data validation and integrity
+- Aggregation and reporting
+- Authentication-related data management

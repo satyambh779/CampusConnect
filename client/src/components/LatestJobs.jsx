@@ -1,105 +1,103 @@
-import { FaMapMarkerAlt, FaMoneyBillWave, FaClock } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { FaArrowRight, FaBriefcase, FaClock, FaMapMarkerAlt, FaMoneyBillWave } from "react-icons/fa";
+import { getJobs } from "../services/api";
 
 function LatestJobs() {
-  const jobs = [
-    {
-      company: "Google",
-      role: "Frontend Developer",
-      location: "Bangalore",
-      salary: "₹18 LPA",
-      experience: "0-1 Years",
-    },
-    {
-      company: "Microsoft",
-      role: "AI Engineer",
-      location: "Hyderabad",
-      salary: "₹22 LPA",
-      experience: "Freshers",
-    },
-    {
-      company: "Amazon",
-      role: "Backend Developer",
-      location: "Gurugram",
-      salary: "₹20 LPA",
-      experience: "1 Year",
-    },
-    {
-      company: "Adobe",
-      role: "UI/UX Designer",
-      location: "Noida",
-      salary: "₹15 LPA",
-      experience: "Freshers",
-    },
-    {
-      company: "Infosys",
-      role: "Software Engineer",
-      location: "Pune",
-      salary: "₹9 LPA",
-      experience: "0-2 Years",
-    },
-    {
-      company: "TCS",
-      role: "Java Developer",
-      location: "Mumbai",
-      salary: "₹7.5 LPA",
-      experience: "Freshers",
-    },
-  ];
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const res = await getJobs();
+        setJobs(res.data.jobs || []);
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchJobs();
+  }, []);
 
   return (
-    <section className="bg-gray-100 py-20">
-      <div className="max-w-7xl mx-auto px-6">
-
-        <h2 className="text-4xl font-bold text-center mb-4">
-          Latest Jobs
-        </h2>
-
-        <p className="text-center text-gray-600 mb-12">
-          Apply to the newest opportunities from our partner companies.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-          {jobs.map((job, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition duration-300"
-            >
-              <h3 className="text-2xl font-bold text-blue-700">
-                {job.role}
-              </h3>
-
-              <p className="text-lg font-semibold mt-2">
-                {job.company}
-              </p>
-
-              <div className="mt-4 space-y-2 text-gray-600">
-
-                <p className="flex items-center gap-2">
-                  <FaMapMarkerAlt />
-                  {job.location}
-                </p>
-
-                <p className="flex items-center gap-2">
-                  <FaMoneyBillWave />
-                  {job.salary}
-                </p>
-
-                <p className="flex items-center gap-2">
-                  <FaClock />
-                  {job.experience}
-                </p>
-
-              </div>
-
-              <button className="w-full mt-6 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
-                Apply Now
-              </button>
-            </div>
-          ))}
-
+    <section className="bg-slate-50 border-b border-slate-200/80 px-4 py-16 sm:py-20">
+      <div className="mx-auto max-w-[1180px]">
+        <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+          <div>
+            <span className="eyebrow">Fresh Opportunities</span>
+            <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+              Roles worth a closer look.
+            </h2>
+            <p className="mt-1.5 text-xs sm:text-sm text-slate-500">
+              Newest opportunities from corporate teams looking for university talent.
+            </p>
+          </div>
+          <Link to="/jobs" className="button-secondary text-xs w-fit">
+            View all roles <FaArrowRight className="text-[10px]" />
+          </Link>
         </div>
 
+        {loading ? (
+          <div className="loading-state">
+            <span className="rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-xs font-semibold text-slate-600 shadow-xs">
+              Loading opportunities...
+            </span>
+          </div>
+        ) : jobs.length === 0 ? (
+          <div className="empty-state surface-card mt-8 p-8">
+            <div>
+              <span className="mx-auto grid h-10 w-10 place-items-center rounded-lg border border-slate-200 bg-slate-50 text-slate-600">
+                <FaBriefcase />
+              </span>
+              <h3 className="mt-3 text-base font-bold text-slate-900">Opportunities on their way</h3>
+              <p className="mt-1 text-xs text-slate-500">Check back soon or post the first opportunity.</p>
+            </div>
+          </div>
+        ) : (
+          <div className="mt-8 grid gap-4 lg:grid-cols-3">
+            {jobs.slice(0, 3).map((job) => (
+              <article
+                key={job._id}
+                className="group surface-card flex flex-col p-5 transition hover:border-slate-300"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-slate-200 bg-slate-50 font-mono text-sm font-bold text-slate-800">
+                    {job.company?.name?.charAt(0) || "C"}
+                  </span>
+                  <span className="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-0.5 text-[11px] font-medium text-slate-600">
+                    {job.jobType || "Role"}
+                  </span>
+                </div>
+
+                <div className="mt-4">
+                  <p className="text-xs font-semibold text-slate-500">{job.company?.name || "Campus partner"}</p>
+                  <h3 className="mt-1 text-base font-bold tracking-tight text-slate-900">{job.title}</h3>
+                </div>
+
+                <div className="mt-4 grid gap-1.5 text-xs text-slate-500">
+                  <span className="inline-flex items-center gap-2">
+                    <FaMapMarkerAlt className="text-slate-400 text-xs" /> {job.location || "Flexible"}
+                  </span>
+                  <span className="inline-flex items-center gap-2">
+                    <FaMoneyBillWave className="text-slate-400 text-xs" /> ₹{job.salary ? job.salary.toLocaleString() : "Competitive"}
+                  </span>
+                  <span className="inline-flex items-center gap-2">
+                    <FaClock className="text-slate-400 text-xs" /> {job.experienceLevel ? `${job.experienceLevel} yrs experience` : "Early career"}
+                  </span>
+                </div>
+
+                <Link
+                  to={`/job/${job._id}`}
+                  className="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold text-slate-900 hover:underline"
+                >
+                  View opportunity <FaArrowRight className="text-[10px]" />
+                </Link>
+              </article>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

@@ -5,16 +5,19 @@ const userSchema = new mongoose.Schema(
     fullname: {
       type: String,
       required: true,
+      trim: true,
     },
 
     email: {
       type: String,
       required: true,
       unique: true,
+      lowercase: true,
+      trim: true,
     },
 
     phoneNumber: {
-      type: Number,
+      type: String,
       required: true,
     },
 
@@ -25,13 +28,14 @@ const userSchema = new mongoose.Schema(
 
     role: {
       type: String,
-      enum: ["student", "recruiter"],
-      required: true,
+      enum: ["student", "recruiter", "admin"],
+      default: "student",
     },
 
     profile: {
       bio: {
         type: String,
+        default: "",
       },
 
       skills: [
@@ -40,22 +44,78 @@ const userSchema = new mongoose.Schema(
         },
       ],
 
+      cgpa: {
+        type: Number,
+        default: 8.2,
+      },
+
+      degree: {
+        type: String,
+        default: "B.Tech",
+      },
+
+      branch: {
+        type: String,
+        default: "Computer Science & Engineering",
+      },
+
+      graduationYear: {
+        type: Number,
+        default: 2026,
+      },
+
+      experienceYears: {
+        type: Number,
+        default: 0,
+      },
+
+      projects: [
+        {
+          title: String,
+          description: String,
+          technologies: [String],
+        },
+      ],
+
+      certifications: [
+        {
+          type: String,
+        },
+      ],
+
+      preferredRole: {
+        type: String,
+        default: "Software Engineer",
+      },
+
+      preferredLocation: {
+        type: String,
+        default: "Bengaluru / Remote",
+      },
+
+      expectedSalary: {
+        type: Number,
+        default: 600000,
+      },
+
       resume: {
         type: String,
+        default: "",
       },
 
       resumeOriginalName: {
         type: String,
-      },
-
-      company: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Company",
+        default: "",
       },
 
       profilePhoto: {
         type: String,
         default: "",
+      },
+
+      company: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Company",
       },
     },
   },

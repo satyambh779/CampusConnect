@@ -5,6 +5,7 @@ const jobSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
+      trim: true,
     },
 
     description: {
@@ -18,7 +19,29 @@ const jobSchema = new mongoose.Schema(
       },
     ],
 
+    requiredSkills: [
+      {
+        type: String,
+      },
+    ],
+
+    requiredCgpa: {
+      type: Number,
+      default: 6.0,
+    },
+
+    preferredBranch: [
+      {
+        type: String,
+      },
+    ],
+
     salary: {
+      type: Number,
+      required: true,
+    },
+
+    experienceLevel: {
       type: Number,
       required: true,
     },
@@ -28,13 +51,9 @@ const jobSchema = new mongoose.Schema(
       required: true,
     },
 
-    experienceLevel: {
-      type: Number,
-      required: true,
-    },
-
     jobType: {
       type: String,
+      enum: ["Full-Time", "Part-Time", "Internship", "Remote"],
       required: true,
     },
 

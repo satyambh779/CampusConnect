@@ -1,4 +1,234 @@
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Plus Jakarta Sans", system-ui, sans-serif;
+  color: #0f172a;
+  background: #f8fafc;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button, input, textarea, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: #0f172a;
+  color: #ffffff;
+}
+
+.site-main {
+  min-height: calc(100vh - 140px);
+}
+
+.page-shell {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 3rem 0 5rem;
+}
+
+/* Modern Minimal Eyebrow Badge (Stripe/Linear style) */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  background: #ffffff;
+  color: #334155;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+}
+
+.page-title {
+  margin: 0.95rem 0 0.55rem;
+  color: #0f172a;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+}
+
+.page-copy {
+  max-width: 42rem;
+  color: #64748b;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* Premium Modern Card */
+.surface-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 0.875rem;
+  background: #ffffff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.surface-card:hover {
+  border-color: #cbd5e1;
+}
+
+.form-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: #1e293b;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.field-control {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field-control::placeholder {
+  color: #94a3b8;
+  opacity: 1;
+}
+
+.field-control:focus {
+  border-color: #0f172a;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.08);
+}
+
+/* High-End Modern Buttons */
+.button-primary, .button-secondary, .button-quiet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.6rem;
+  border-radius: 0.625rem;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+/* Primary: Solid Obsidian/Slate with fine border */
+.button-primary {
+  border: 1px solid #0f172a;
+  background: #0f172a;
+  color: #ffffff;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+}
+
+.button-primary:hover {
+  background: #1e293b;
+  border-color: #1e293b;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+}
+
+.button-primary:active {
+  transform: translateY(1px);
+}
+
+/* Secondary: Crisp White with fine border */
+.button-secondary {
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+}
+
+.button-secondary:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+}
+
+.button-secondary:active {
+  transform: translateY(1px);
+}
+
+/* Quiet / Ghost */
+.button-quiet {
+  border: 1px solid transparent;
+  color: #475569;
+  background: transparent;
+}
+
+.button-quiet:hover {
+  color: #0f172a;
+  background: #f1f5f9;
+}
+
+.loading-state, .empty-state {
+  display: grid;
+  min-height: 16rem;
+  place-items: center;
+  text-align: center;
+  color: #64748b;
+}
+
+.fade-up {
+  animation: fade-up 0.4s ease-out both;
+}
+
+.fade-up-delay {
+  animation: fade-up 0.4s 0.08s ease-out both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    width: min(100% - 1.25rem, 1180px);
+    padding: 2rem 0 3rem;
+  }
+}

@@ -1,78 +1,51 @@
-import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { FaBriefcase, FaGraduationCap, FaLinkedinIn } from "react-icons/fa";
 
 function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-12">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
-
-        {/* Logo */}
+    <footer className="border-t border-slate-800 bg-slate-900 text-slate-300">
+      <div className="mx-auto grid w-[min(1180px,calc(100%_-_2rem))] gap-10 py-12 md:grid-cols-[1.5fr_1fr_1fr]">
         <div>
-          <h2 className="text-3xl font-bold text-blue-400">
-            CampusConnect
-          </h2>
-
-          <p className="mt-4 text-gray-400">
-            Connecting students with the best companies for internships
-            and placements.
+          <div className="flex items-center gap-3">
+            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-slate-800 text-white text-sm">
+              <FaGraduationCap />
+            </span>
+            <span aria-hidden="true" className="h-5 w-px bg-slate-700" />
+            <span className="text-base font-bold tracking-tight text-white">
+              Campus<span className="text-slate-400 font-semibold">Connect</span>
+            </span>
+          </div>
+          <p className="mt-3.5 max-w-sm text-xs leading-6 text-slate-400">
+            Enterprise campus recruitment and career intelligence platform connecting university students with industry leaders.
           </p>
         </div>
 
-        {/* Quick Links */}
         <div>
-          <h3 className="text-xl font-semibold mb-4">
-            Quick Links
-          </h3>
-
-          <ul className="space-y-2 text-gray-400">
-            <li>Home</li>
-            <li>Jobs</li>
-            <li>Companies</li>
-            <li>Register</li>
-          </ul>
-        </div>
-
-        {/* Contact */}
-        <div>
-          <h3 className="text-xl font-semibold mb-4">
-            Contact
-          </h3>
-
-          <p className="text-gray-400">
-            📧 support@campusconnect.com
-          </p>
-
-          <p className="text-gray-400 mt-2">
-            📞 +91 9315542736
-          </p>
-
-          <p className="text-gray-400 mt-2">
-            📍 Gurugram, Haryana
-          </p>
-        </div>
-
-        {/* Social */}
-        <div>
-          <h3 className="text-xl font-semibold mb-4">
-            Follow Us
-          </h3>
-
-          <div className="flex gap-5 text-2xl">
-
-            <FaFacebook className="cursor-pointer hover:text-blue-500 transition" />
-
-            <FaInstagram className="cursor-pointer hover:text-pink-500 transition" />
-
-            <FaLinkedin className="cursor-pointer hover:text-blue-400 transition" />
-
-            <FaGithub className="cursor-pointer hover:text-gray-300 transition" />
-
+          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-200">Explore</h2>
+          <div className="mt-3 grid gap-2.5 text-xs text-slate-400">
+            <Link to="/jobs" className="hover:text-white transition-colors">Find opportunities</Link>
+            <Link to="/companies" className="hover:text-white transition-colors">Companies</Link>
+            <Link to="/register" className="hover:text-white transition-colors">Create an account</Link>
           </div>
         </div>
 
+        <div>
+          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-200">Recruiters</h2>
+          <div className="mt-3 grid gap-2.5 text-xs text-slate-400">
+            <Link to="/post-job" className="hover:text-white transition-colors">Post an opportunity</Link>
+            <Link to="/create-company" className="hover:text-white transition-colors">Register company</Link>
+            <a href="mailto:support@campusconnect.com" className="hover:text-white transition-colors">Contact placement desk</a>
+          </div>
+        </div>
       </div>
 
-      <div className="border-t border-gray-700 mt-10 pt-6 text-center text-gray-500">
-        © 2026 CampusConnect. All Rights Reserved.
+      <div className="border-t border-slate-800">
+        <div className="mx-auto flex w-[min(1180px,calc(100%_-_2rem))] flex-wrap items-center justify-between gap-4 py-4 text-xs text-slate-500">
+          <span>&copy; {new Date().getFullYear()} CampusConnect. All rights reserved.</span>
+          <span className="inline-flex items-center gap-2">
+            <FaBriefcase className="text-slate-600" /> Placement Analytics & Career Pipeline
+          </span>
+        </div>
       </div>
     </footer>
   );
